@@ -1,0 +1,23 @@
+[Unit]
+Description=Unicef_Monitoring_Daemon
+Requires=unicef-init
+After=unicef-init.service
+
+[Service]
+Environment="NODE_PATH=/usr/lib/node_modules"
+Environment="NODE_ENV=production"
+Environment="AVAHI_COMPAT_NOWARN=1"
+Environment="HOME=/home/root"
+
+Environment="MODULE_DATA_DIR=/media/sdcard"
+Environment="MODULE_APP_DIR=/apps/monitoring"
+
+ExecStart=/bin/su root -c 'forever start ${MODULE_APP_DIR}/app.js'
+ExecReload=/bin/su root -c 'forever restart ${MODULE_APP_DIR}/app.js'
+ExecStop=/bin/su root -c 'forever stop ${MODULE_APP_DIR}/app.js'
+
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

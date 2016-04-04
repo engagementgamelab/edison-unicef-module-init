@@ -1,0 +1,1 @@
+export MODULE_DATA_DIR='/media/sdcard'
