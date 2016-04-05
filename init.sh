@@ -56,7 +56,6 @@ cp -rf apps/* /apps
 
 # node packages
 echo "Installing node packages..."
-npm install -g forever
 npm install -g express
 
 # profile config
