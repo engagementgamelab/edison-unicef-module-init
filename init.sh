@@ -2,6 +2,12 @@
 
 source ./config.properties
 
+YELLOW='\033[1;31m'
+NC='\033[0m' # No Color
+echo()={
+	printf ${YELLOW}${$1}${NC}
+}
+
 echo "Initializing module "${module_id}
 
 # init ssh access (ssh -i ~/.ssh/unicef_rsa root@192.168.2.15)
