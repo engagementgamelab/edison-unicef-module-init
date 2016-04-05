@@ -14,9 +14,7 @@ Environment="MODULE_APP_DIR=/apps/downloader"
 Environment="DOWNLOADER_PORT=80"
 
 
-ExecStart=/bin/su root -c 'forever start ${MODULE_APP_DIR}/index.js'
-ExecReload=/bin/su root -c 'forever restart ${MODULE_APP_DIR}/index.js'
-ExecStop=/bin/su root -c 'forever stop ${MODULE_APP_DIR}/index.js'
+ExecStart=/bin/su root -c 'node ${MODULE_APP_DIR}/index.js'
 
 Restart=always
 RestartSec=10s

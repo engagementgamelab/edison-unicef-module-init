@@ -30,8 +30,8 @@ systemctl start wpa_supplicant
 # go online
 ifconfig wlan0 up
 echo "Waiting for WIFI..."
-ifconfig wlan0
 sleep 5
+ifconfig wlan0
 
 # install git
 cp -rf ./base-feeds.conf /etc/opkg/
