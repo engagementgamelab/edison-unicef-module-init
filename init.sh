@@ -5,7 +5,7 @@ source ./config.properties
 YELLOW='\033[1;31m'
 NC='\033[0m' # No Color
 echo(){
-	printf ${YELLOW}${$1}${NC}
+	printf "${YELLOW}${$1}${NC}"
 }
 
 echo "Initializing module "${module_id}
