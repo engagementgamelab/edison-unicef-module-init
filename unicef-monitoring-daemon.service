@@ -11,6 +11,7 @@ Environment="HOME=/home/root"
 
 Environment="MODULE_DATA_DIR=/media/sdcard"
 Environment="MODULE_APP_DIR=/apps/monitoring"
+Environment="MONITORING_PORT=8080"
 
 ExecStart=/bin/su root -c 'forever start ${MODULE_APP_DIR}/app.js'
 ExecReload=/bin/su root -c 'forever restart ${MODULE_APP_DIR}/app.js'
