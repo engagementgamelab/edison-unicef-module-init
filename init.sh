@@ -58,6 +58,12 @@ echo "Copying profile configs..."
 cp -rf .profile /home/root
 cp -rf .vimrc /home/root
 
+# disable edison edison_config.service
+systemctl disable edison_config.service
+
+#symlink to services
+ln -s /lib/systemd/system ~/services
+
 # add unicef-init service
 echo "Binding unicef-init service..."
 cp -rf ./unicef-init.service /lib/systemd/system/
@@ -87,3 +93,9 @@ echo ""
 echo "Service controll:"
 echo "    systemctl start unicef-monitoring-daemon"
 echo "    systemctl start unicef-downloader"
+
+echo ""
+echo "Service logs:"
+echo "    journalctl -f -u unicef-downloader"
+echo "    journalctl -f -u unicef-init"
+echo "    journalctl -f -u unicef-monitoring-daemon"
