@@ -63,8 +63,9 @@ echo "Copying profile configs..."
 cp -rf .profile /home/root
 cp -rf .vimrc /home/root
 
-# disable edison edison_config.service
-systemctl disable edison_config.service
+# disable edison edison_config
+systemctl disable edison_config
+#systemctl disable wpa_supplicant
 
 #symlink to services
 ln -s /lib/systemd/system ~/services
