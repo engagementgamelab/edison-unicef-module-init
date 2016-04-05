@@ -4,7 +4,7 @@ source ./config.properties
 
 YELLOW='\033[1;31m'
 NC='\033[0m' # No Color
-echo()={
+echo(){
 	printf ${YELLOW}${$1}${NC}
 }
 
