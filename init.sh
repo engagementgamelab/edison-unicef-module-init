@@ -79,3 +79,11 @@ echo "0" > /home/root/REBOOT_COUNT
 cp -rf ./updateRebootCount.sh /home/root/
 
 # init chrone daily reboot task ???
+
+echo "*******************************"
+echo "Initialization completed"
+echo "*******************************"
+echo ""
+echo "Service controll:"
+echo "    systemctl start unicef-monitoring-daemon"
+echo "    systemctl start unicef-downloader"
