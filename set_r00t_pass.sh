@@ -2,5 +2,5 @@
 SALT=$(cat /factory/serial_number)
 PLAINTEXT="edison"
 HASH=$(perl -e "print crypt(${PLAINTEXT},${SALT})")
-echo "Password Hash = \"${HASH}\""
+echo "IoT ssh password = \"${PLAINTEXT}\""
 usermod -p ${HASH} root

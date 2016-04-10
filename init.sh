@@ -87,7 +87,7 @@ systemctl enable unicef-monitoring-daemon
 
 # init reboot count
 echo "Initializing REBOOT_COUNT=0"
-echo "0" > /home/root/REBOOT_COUNT
+builtin echo "0" > /home/root/REBOOT_COUNT
 cp -rf ./updateRebootCount.sh /home/root/
 
 # init chrone daily reboot task ???
