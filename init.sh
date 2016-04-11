@@ -102,6 +102,10 @@ echo "Initializing REBOOT_COUNT=0"
 builtin echo "0" > /home/root/REBOOT_COUNT
 cp -rf ./updateRebootCount.sh /home/root/
 
+# update hostname
+echo "Updating hostname so Edison will be available as 'unicef.local'"
+builtin echo "unicef" > /etc/hostname
+
 # init chrone daily reboot task ???
 
 echo "*******************************"
