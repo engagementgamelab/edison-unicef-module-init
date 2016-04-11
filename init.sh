@@ -35,7 +35,11 @@ systemctl start wpa_supplicant
 
 # go online
 ifconfig wlan0 up
-echo "Waiting for WIFI..."
+echo "Waiting for WIFI...15s"
+sleep 5
+echo "Waiting for WIFI...10s"
+sleep 5
+echo "Waiting for WIFI...5s"
 sleep 5
 ifconfig wlan0
 
@@ -52,11 +56,19 @@ cp -rf ./ffmpeg/* /home/root/ffmpeg
 
 # copy the apps
 echo "Copying the apps..."
+mkdir -p /apps
 cp -rf apps/* /apps
 
 # node packages
 echo "Installing node packages..."
 npm install -g express
+
+# scripts
+echo "Installing scripts..."
+mkdir -p /home/scripts
+cp sleep.sh /home/scripts
+cp startAp.sh /home/scripts
+cp stopAp.sh /home/scripts
 
 # profile config
 echo "Copying profile configs..."
