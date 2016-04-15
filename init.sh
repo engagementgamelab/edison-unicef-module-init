@@ -48,6 +48,7 @@ cp -rf ./base-feeds.conf /etc/opkg/
 opkg update
 opkg install git
 opkg install vim
+opkg install gzip
 
 # ffmpeg
 echo "Installing ffmpeg..."

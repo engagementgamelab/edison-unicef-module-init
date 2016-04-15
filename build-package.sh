@@ -17,4 +17,4 @@ PACKAGE_NAME="${reboot_count}_${date_string}_${random_string}.zip"
 
 log "Building package "${PACKAGE_NAME}
 
-gzip $PACKAGE_NAME $temp_data_dir/*
+tar -zcvf $PACKAGE_NAME $temp_data_dir/*
