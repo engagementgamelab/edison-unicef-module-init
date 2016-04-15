@@ -10,7 +10,7 @@ mkdir -p $data_dir
 mkdir -p $temp_data_dir
 
 date_string=`date +"%Y_%m_%d-%H_%M_%S"`
-random_string=`date | md5sum | head -c 20`
+random_string=`< /dev/urandom tr -dc A-Za-z0-9 | head -c20`
 reboot_count=`cat /home/root/REBOOT_COUNT`
 
 rm -fr $temp_data_dir/*
