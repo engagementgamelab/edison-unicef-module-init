@@ -69,6 +69,8 @@ mkdir -p /home/scripts
 cp sleep.sh /home/scripts
 cp startAp.sh /home/scripts
 cp stopAp.sh /home/scripts
+cp build-package.sh /home/scripts
+cp config.properties /home/scripts
 
 # profile config
 echo "Copying profile configs..."
@@ -106,7 +108,7 @@ cp -rf ./updateRebootCount.sh /home/root/
 echo "Updating hostname so Edison will be available as 'unicef.local'"
 builtin echo "unicef" > /etc/hostname
 
-# init chrone daily reboot task ???
+# init crone daily reboot task ???
 
 echo "*******************************"
 echo "Initialization completed"
