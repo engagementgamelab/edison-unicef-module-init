@@ -130,4 +130,8 @@ echo "    journalctl -f -u unicef-monitoring-daemon"
 echo " "
 echo " "
 echo " "
-echo "now you have to reboot you Edison!"
+echo " SUCCESS"
+echo " "
+echo "Edison will reboot in 5 seconds"
+sleep 5
+reboot now
