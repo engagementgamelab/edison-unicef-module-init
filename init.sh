@@ -3,9 +3,11 @@
 source ./config.txt
 
 RED='\033[0;31m'
-BLUE='\033[0;34m'
+BLUE='\033[1;34m'
 YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
 NC='\033[0m' # No Color
+
 echo(){
 	printf "${YELLOW}$1${NC}\n"
 }
@@ -14,9 +16,14 @@ error(){
 	printf "${RED}$1${NC}\n"
 }
 
-warning(){
+important(){
 	printf "${BLUE}$1${NC}\n"
 }
+
+info(){
+	printf "${GREEN}$1${NC}\n"
+}
+
 
 echo "Initializing module "${module_id}
 
@@ -136,9 +143,9 @@ builtin echo "unicef" > /etc/hostname
 
 # init crone daily reboot task ???
 
-echo "*******************************"
-warning "Initialization completed"
-echo "*******************************"
+info "*******************************"
+info "** Initialization completed ***"
+info "*******************************"
 echo ""
 echo "Service controll:"
 echo "    systemctl start unicef-monitoring-daemon"
@@ -152,8 +159,8 @@ echo "    journalctl -f -u unicef-monitoring-daemon"
 echo " "
 echo " "
 echo " "
-warning " SUCCESS"
+info " SUCCESS"
 echo " "
-warning "Edison will reboot in 5 seconds..."
+important "Edison will reboot in 5 seconds..."
 sleep 5
 reboot now
