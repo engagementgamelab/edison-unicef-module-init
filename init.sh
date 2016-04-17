@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ./config.properties
+source ./config.txt
 
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
@@ -71,7 +71,7 @@ cp sleep.sh /home/scripts
 cp startAp.sh /home/scripts
 cp stopAp.sh /home/scripts
 cp build-package.sh /home/scripts
-cp config.properties /home/scripts
+cp config.txt /home/scripts
 
 # profile config
 echo "Copying profile configs..."

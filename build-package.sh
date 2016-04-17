@@ -1,5 +1,5 @@
 #!/bin/sh
-source ./config.properties
+source ./config.txt
 
 log(){
 	echo `date`": "$1
