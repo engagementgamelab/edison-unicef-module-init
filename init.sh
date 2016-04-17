@@ -31,6 +31,8 @@ cp -rf ./hostapd.conf /etc/hostapd/hostapd.conf
 echo "Configure WIFI manually..."
 configure_edison --wifi
 
+ping -c 1 google.com &>/dev/null
+
 if [ $? -eq 0 ]
 then
   echo "WIFI configuration OK"
