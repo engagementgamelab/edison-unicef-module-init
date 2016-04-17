@@ -23,10 +23,13 @@ echo "Stopping wlan0 ..."
 ifconfig wlan0 down
 echo "Stopping wpa_supplicant ..."
 systemctl stop wpa_supplicant
-sed "s/__WIFI_SSID__/${wifi_ssid}/g;s/__WIFI_PASS__/${wifi_pass}/g" wpa_supplicant.conf.template > wpa_supplicant.conf
+# sed "s/__WIFI_SSID__/${wifi_ssid}/g;s/__WIFI_PASS__/${wifi_pass}/g" wpa_supplicant.conf.template > wpa_supplicant.conf
 sed "s/__AP_SSID__/${ap_ssid}/g;s/__AP_PASS__/${ap_pass}/g" hostapd.conf.template > hostapd.conf
-cp -rf ./wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
+# cp -rf ./wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
 cp -rf ./hostapd.conf /etc/hostapd/hostapd.conf
+
+echo "Configure WIFI manually..."
+configure_edison --wifi
 
 echo "Unblocking wlan ..."
 rfkill unblock wlan
