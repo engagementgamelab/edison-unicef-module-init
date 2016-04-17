@@ -31,6 +31,14 @@ cp -rf ./hostapd.conf /etc/hostapd/hostapd.conf
 echo "Configure WIFI manually..."
 configure_edison --wifi
 
+if [ $? -eq 0 ]
+then
+  echo "WIFI configuration OK"
+else
+  builtin echo "*** ERROR. WIFI configuration failed ***" >&2
+  exit -1
+fi
+
 echo "Unblocking wlan ..."
 rfkill unblock wlan
 echo "Starting wpa_supplicant ..."
