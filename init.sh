@@ -143,9 +143,7 @@ builtin echo "unicef" > /etc/hostname
 
 # init crone daily reboot task ???
 
-info "*******************************"
-info "** Initialization completed ***"
-info "*******************************"
+info "*** Initialization completed successfully ***"
 echo ""
 echo "Service controll:"
 echo "    systemctl start unicef-monitoring-daemon"
@@ -159,8 +157,9 @@ echo "    journalctl -f -u unicef-monitoring-daemon"
 echo " "
 echo " "
 echo " "
-info " SUCCESS"
 echo " "
+important "**********************************"
 important "Edison will reboot in 5 seconds..."
+important "**********************************"
 sleep 5
 reboot now
