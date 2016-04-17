@@ -2,10 +2,20 @@
 
 source ./config.txt
 
+RED='\033[0;31m'
+BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 echo(){
 	printf "${YELLOW}$1${NC}\n"
+}
+
+error(){
+	printf "${RED}$1${NC}\n"
+}
+
+warning(){
+	printf "${BLUE}$1${NC}\n"
 }
 
 echo "Initializing module "${module_id}
@@ -37,7 +47,9 @@ if [ $? -eq 0 ]
 then
   echo "WIFI configuration OK"
 else
-  builtin echo "*** ERROR. WIFI configuration failed ***" >&2
+  error "********************************************"
+  error "*** ERROR 001. WIFI configuration failed ***"
+  error "********************************************"
   exit -1
 fi
 
@@ -125,7 +137,7 @@ builtin echo "unicef" > /etc/hostname
 # init crone daily reboot task ???
 
 echo "*******************************"
-echo "Initialization completed"
+warning "Initialization completed"
 echo "*******************************"
 echo ""
 echo "Service controll:"
@@ -140,8 +152,8 @@ echo "    journalctl -f -u unicef-monitoring-daemon"
 echo " "
 echo " "
 echo " "
-echo " SUCCESS"
+warning " SUCCESS"
 echo " "
-echo "Edison will reboot in 5 seconds"
+warning "Edison will reboot in 5 seconds..."
 sleep 5
 reboot now
