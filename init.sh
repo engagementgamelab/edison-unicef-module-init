@@ -1,6 +1,7 @@
 #!/bin/sh
-
 source ./config.txt
+
+WORKING_DID=`pwd`
 
 RED='\033[0;31m'
 BLUE='\033[1;34m'
@@ -23,7 +24,6 @@ important(){
 info(){
 	printf "${GREEN}$1${NC}\n"
 }
-
 
 echo "Initializing module "${module_id}
 
@@ -88,9 +88,17 @@ mkdir -p /home/root/ffmpeg
 cp -rf ./ffmpeg/* /home/root/ffmpeg
 
 # copy the apps
-echo "Copying the apps..."
+echo "Downloading the apps..."
+rm -fr /apps
 mkdir -p /apps
-cp -rf apps/* /apps
+git clone --branch $app_downloader_version $app_downloader_repo /apps/downloader
+cd /apps/downloader
+npm install
+git clone --branch $app_monitoring_version $app_monitoring_repo /apps/monitoring
+cd /apps/monitoring
+npm install
+
+cd $WORKING_DIR
 
 # node packages
 echo "Installing node packages..."
