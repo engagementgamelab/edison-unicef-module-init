@@ -98,12 +98,12 @@ npm install -g express
 
 # scripts
 echo "Installing scripts..."
-mkdir -p /home/scripts
-cp sleep.sh /home/scripts
-cp startAp.sh /home/scripts
-cp stopAp.sh /home/scripts
-cp build-package.sh /home/scripts
-cp config.txt /home/scripts
+mkdir -p /home/root/scripts
+cp sleep.sh /home/root/scripts
+cp startAp.sh /home/root/scripts
+cp stopAp.sh /home/root/scripts
+cp build-package.sh /home/root/scripts
+cp config.txt /home/root/scripts
 
 # profile config
 echo "Copying profile configs..."
