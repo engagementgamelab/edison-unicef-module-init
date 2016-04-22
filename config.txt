@@ -4,6 +4,7 @@ ap_ssid="unicef_"${module_id}
 ap_pass="unicefghana"
 app_monitoring_version=0.0.1
 app_downloader_version=0.0.1
+module_ssh_password="edison"
 
 # DO NOT MODIFY ANYTHING BELOW THIS LINE
 module_id=`cat /factory/serial_number`

@@ -32,7 +32,7 @@ mkdir -p /home/root/.ssh
 cp -rf ./ssh_keys/* /home/root/.ssh
 cat ./ssh_keys/*.pub >> /home/root/.ssh/authorized_keys
 chmod 600 /home/root/.ssh/*
-./scripts/set_r00t_pass.sh
+./scripts/set_r00t_pass.sh $module_ssh_password
 
 # add WIFI config (wpa_supplicant)
 # temp init config and AP mode config (unique SSID)
@@ -156,6 +156,7 @@ echo " "
 echo " "
 important "**********************************"
 important "Edison will reboot in 5 seconds..."
+important "SSH password is ${module_ssh_password}"
 important "**********************************"
 sleep 5
 reboot now
