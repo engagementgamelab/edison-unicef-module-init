@@ -9,7 +9,7 @@ Environment="NODE_ENV=production"
 Environment="AVAHI_COMPAT_NOWARN=1"
 Environment="HOME=/home/root"
 
-Environment="MODULE_PACKAGES_DIR=/media/sdcard"
+Environment="MODULE_PACKAGES_DIR=/media/sdcard/packages"
 Environment="MODULE_APP_DIR=/apps/downloader"
 Environment="DOWNLOADER_PORT=80"
 

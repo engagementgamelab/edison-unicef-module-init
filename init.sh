@@ -132,8 +132,8 @@ cp -rf ./unicef-monitoring-daemon.service /lib/systemd/system/
 systemctl enable unicef-monitoring-daemon
 
 # init reboot count
-echo "Initializing REBOOT_COUNT=0"
-builtin echo "0" > /home/root/REBOOT_COUNT
+echo "Initializing ${reboot_cout_file} = 0"
+builtin echo "0" > $reboot_cout_file
 
 # update hostname
 echo "Updating hostname so Edison will be available as 'unicef.local'"
