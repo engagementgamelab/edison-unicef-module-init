@@ -17,4 +17,4 @@ ffmpeg_binary_path="/home/root/ffmpeg/ffmpeg"
 package_size_file="/home/root/CURRENT_PACKAGE_SIZE"
 package_name_file="/home/root/CURRENT_PACKAGE_NAME"
 max_package_size=100
-reboot_cout_file="/home/root/REBOOT_COUNT"
+reboot_count_file="/home/root/REBOOT_COUNT"

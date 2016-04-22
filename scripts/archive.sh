@@ -6,6 +6,7 @@ log(){
 }
 
 createPackageName(){
+	log "Creating package name..."
 	date_string=`date +"%Y_%m_%d-%H_%M_%S"`
 	random_string=`< /dev/urandom tr -dc A-Za-z0-9 | head -c20`
 	reboot_count=`cat ${reboot_count_file}`
@@ -19,7 +20,7 @@ createPackageName(){
 # *****
 # START
 # *****
-if [[ -z "${$1// }" ]]; then
+if [ -z "$1" ]; then
 	log "missing file prefix param"
 	exit -1
 fi	
@@ -35,8 +36,8 @@ CURRENT_PACKAGE_NAME=`cat $package_name_file`
 CURRENT_PACKAGE_SIZE=`cat $package_size_file`
 
 # if count > ${max_package_size} || count == null || package_name == null         -> create new package
-if [[ -z "${CURRENT_PACKAGE_SIZE// }" ]] || [[ -z "${CURRENT_PACKAGE_NAME// }" ]] || [ "${CURRENT_PACKAGE_SIZE}" >= "${max_package_size}" ]; then
-   createPackageName()
+if [ -z "${CURRENT_PACKAGE_SIZE}" ] || [ -z "${CURRENT_PACKAGE_NAME}" ] || [ "${CURRENT_PACKAGE_SIZE}" >= "${max_package_size}" ]; then
+   createPackageName
    PACKAGE_NAME=$NEW_PACKAGE_NAME
 else
    	# else use the current package

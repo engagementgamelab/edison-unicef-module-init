@@ -103,6 +103,10 @@ echo "Initializing data dirs..."
 mkdir -p $data_packages_dir
 mkdir -p $data_dir
 
+echo "Initializing data packages..."
+touch $package_size_file
+touch $package_name_file
+
 # scripts
 echo "Installing scripts..."
 mkdir -p /home/root/scripts
@@ -138,8 +142,8 @@ cp -rf ./unicef-monitoring-daemon.service /lib/systemd/system/
 systemctl enable unicef-monitoring-daemon
 
 # init reboot count
-echo "Initializing ${reboot_cout_file} = 0"
-builtin echo "0" > $reboot_cout_file
+echo "Initializing ${reboot_count_file} = 0"
+builtin echo "0" > $reboot_count_file
 
 # update hostname
 echo "Updating hostname so Edison will be available as 'unicef.local'"
