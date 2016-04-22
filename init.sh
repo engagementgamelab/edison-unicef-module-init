@@ -1,7 +1,7 @@
 #!/bin/sh
 source ./config.txt
 
-WORKING_DID=`pwd`
+WORKING_DIR=`pwd`
 
 RED='\033[0;31m'
 BLUE='\033[1;34m'
