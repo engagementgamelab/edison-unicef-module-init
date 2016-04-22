@@ -99,10 +99,15 @@ npm install
 
 cd $WORKING_DIR
 
+echo "Initializing data dirs..."
+mkdir -p $data_packages_dir
+mkdir -p $data_dir
+
 # scripts
 echo "Installing scripts..."
 mkdir -p /home/root/scripts
 cp ./scripts/* /home/root/scripts
+cp ./config.txt /home/root/scripts
 
 # profile config
 echo "Copying profile configs..."
