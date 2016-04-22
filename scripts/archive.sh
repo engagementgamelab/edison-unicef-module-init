@@ -50,5 +50,5 @@ count=$((count+1))
 echo ${count} > ${package_size_file}
 echo "Incremented CURRENT_PACKAGE_SIZE="${count}
 
-tar -zcvf "${data_packages_dir}/${PACKAGE_NAME}" "${data_dir}/*${FILES_PREFIX}*"
-rm -fr "${data_dir}/*${FILES_PREFIX}*"
+tar -zcvf "${data_packages_dir}/${PACKAGE_NAME}" "${data_dir}/${FILES_PREFIX}*"
+rm -fr "${data_dir}/${FILES_PREFIX}*"
