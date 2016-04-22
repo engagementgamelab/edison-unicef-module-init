@@ -36,7 +36,7 @@ CURRENT_PACKAGE_NAME=`cat $package_name_file`
 CURRENT_PACKAGE_SIZE=`cat $package_size_file`
 
 # if count > ${max_package_size} || count == null || package_name == null         -> create new package
-if [ -z "${CURRENT_PACKAGE_SIZE}" ] || [ -z "${CURRENT_PACKAGE_NAME}" ] || [ "${CURRENT_PACKAGE_SIZE}" >= "${max_package_size}" ]; then
+if [ -z "${CURRENT_PACKAGE_SIZE}" ] || [ -z "${CURRENT_PACKAGE_NAME}" ] || (( "${CURRENT_PACKAGE_SIZE}" >= "${max_package_size}" )); then
    createPackageName
    PACKAGE_NAME=$NEW_PACKAGE_NAME
 else
@@ -51,5 +51,13 @@ count=$((count+1))
 echo ${count} > ${package_size_file}
 echo "Incremented CURRENT_PACKAGE_SIZE="${count}
 
-tar -zcvf "${data_packages_dir}/${PACKAGE_NAME}" "${data_dir}/${FILES_PREFIX}*"
-rm -fr "${data_dir}/${FILES_PREFIX}*"
+PACKAGE_PATH="${data_packages_dir}/${PACKAGE_NAME}"
+PACKAGE_FILES="${data_dir}/${FILES_PREFIX}""*"
+echo $PACKAGE_PATH
+echo $PACKAGE_FILES
+tar -zcvf $PACKAGE_PATH $PACKAGE_FILES
+
+rm -fr $PACKAGE_FILES
+
+
+
