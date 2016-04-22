@@ -1,5 +1,6 @@
 #!/bin/sh
-count=`cat /home/root/REBOOT_COUNT`
+source ./config.txt
+count=`cat ${reboot_cout_file}`
 count=$((count+1))
-echo ${count} > /home/root/REBOOT_COUNT
+echo ${count} > ${reboot_cout_file}
 echo "Incremented REBOOT_COUNT="${count}
