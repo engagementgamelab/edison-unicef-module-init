@@ -114,6 +114,7 @@ systemctl disable edison_config
 systemctl disable wpa_supplicant
 
 #symlink to services
+rm -fr ~/services
 ln -s /lib/systemd/system ~/services
 
 # add unicef-init service
