@@ -9,7 +9,7 @@ Environment="NODE_ENV=production"
 Environment="AVAHI_COMPAT_NOWARN=1"
 Environment="HOME=/home/root"
 
-Environment="MODULE_DATA_DIR=/media/sdcard"
+Environment="MODULE_DATA_DIR=/media/sdcard/data"
 Environment="MODULE_APP_DIR=/apps/monitoring"
 Environment="MONITORING_PORT=8080"
 

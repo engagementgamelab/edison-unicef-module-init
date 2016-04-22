@@ -32,20 +32,21 @@ mkdir -p /home/root/.ssh
 cp -rf ./ssh_keys/* /home/root/.ssh
 cat ./ssh_keys/*.pub >> /home/root/.ssh/authorized_keys
 chmod 600 /home/root/.ssh/*
-./set_r00t_pass.sh
+./scripts/set_r00t_pass.sh
 
 # add WIFI config (wpa_supplicant)
 # temp init config and AP mode config (unique SSID)
-echo "Stopping wlan0 ..."
-ifconfig wlan0 down
-echo "Stopping wpa_supplicant ..."
-systemctl stop wpa_supplicant
+#echo "Stopping wlan0 ..."
+#ifconfig wlan0 down
+#echo "Stopping wpa_supplicant ..."
+#systemctl stop wpa_supplicant
 # sed "s/__WIFI_SSID__/${wifi_ssid}/g;s/__WIFI_PASS__/${wifi_pass}/g" wpa_supplicant.conf.template > wpa_supplicant.conf
 sed "s/__AP_SSID__/${ap_ssid}/g;s/__AP_PASS__/${ap_pass}/g" hostapd.conf.template > hostapd.conf
 # cp -rf ./wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
 cp -rf ./hostapd.conf /etc/hostapd/hostapd.conf
 
-echo "Configure WIFI manually..."
+important "Connect Module to your WIFI network with Internet..."
+sleep 5
 configure_edison --wifi
 
 ping -c 1 google.com &>/dev/null
@@ -78,9 +79,7 @@ ifconfig wlan0
 # install git
 cp -rf ./base-feeds.conf /etc/opkg/
 opkg update
-opkg install git
 opkg install vim
-opkg install gzip
 
 # ffmpeg
 echo "Installing ffmpeg..."
@@ -100,18 +99,10 @@ npm install
 
 cd $WORKING_DIR
 
-# node packages
-echo "Installing node packages..."
-npm install -g express
-
 # scripts
 echo "Installing scripts..."
 mkdir -p /home/root/scripts
-cp sleep.sh /home/root/scripts
-cp startAp.sh /home/root/scripts
-cp stopAp.sh /home/root/scripts
-cp build-package.sh /home/root/scripts
-cp config.txt /home/root/scripts
+cp ./scripts/* /home/root/scripts
 
 # profile config
 echo "Copying profile configs..."
@@ -120,7 +111,7 @@ cp -rf .vimrc /home/root
 
 # disable edison edison_config
 systemctl disable edison_config
-#systemctl disable wpa_supplicant
+systemctl disable wpa_supplicant
 
 #symlink to services
 ln -s /lib/systemd/system ~/services
@@ -143,13 +134,10 @@ systemctl enable unicef-monitoring-daemon
 # init reboot count
 echo "Initializing REBOOT_COUNT=0"
 builtin echo "0" > /home/root/REBOOT_COUNT
-cp -rf ./updateRebootCount.sh /home/root/
 
 # update hostname
 echo "Updating hostname so Edison will be available as 'unicef.local'"
 builtin echo "unicef" > /etc/hostname
-
-# init crone daily reboot task ???
 
 info "*** Initialization completed successfully ***"
 echo ""
