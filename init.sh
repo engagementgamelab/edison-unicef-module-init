@@ -92,8 +92,9 @@ rm -fr /apps
 mkdir -p /apps/terminal
 
 echo "Installing www terminal app..."
-cp -fr ./apps/www-terminal /apps/terminal
-
+cp -fr ./apps/www-terminal/* /apps/terminal/
+cd /apps/terminal/
+npm install
 
 echo "Installing downloader app..."
 git clone --branch $app_downloader_version $app_downloader_repo /apps/downloader
