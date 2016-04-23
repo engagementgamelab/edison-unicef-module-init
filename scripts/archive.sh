@@ -53,9 +53,14 @@ echo "Incremented CURRENT_PACKAGE_SIZE="${count}
 
 PACKAGE_PATH="${data_packages_dir}/${PACKAGE_NAME}"
 PACKAGE_FILES="${data_dir}/${FILES_PREFIX}""*"
-echo $PACKAGE_PATH
-echo $PACKAGE_FILES
-tar -rvf $PACKAGE_PATH $PACKAGE_FILES
+
+echo "Package paht: "$PACKAGE_PATH
+echo "Package files: "$PACKAGE_FILES
+
+for f in "${PACKAGE_FILES}*"; do
+  echo "Adding file -> $f"
+  tar -rvf $PACKAGE_PATH $f
+done
 
 rm -fr $PACKAGE_FILES
 

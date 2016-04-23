@@ -80,6 +80,7 @@ ifconfig wlan0
 cp -rf ./base-feeds.conf /etc/opkg/
 opkg update
 opkg install vim
+opkg install tar
 
 # ffmpeg
 echo "Installing ffmpeg..."
