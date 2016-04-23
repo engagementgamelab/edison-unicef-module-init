@@ -88,19 +88,21 @@ mkdir -p /home/root/ffmpeg
 cp -rf ./ffmpeg/* /home/root/ffmpeg
 
 # copy the apps
-echo "Downloading the apps..."
 rm -fr /apps
 mkdir -p /apps/terminal
 
+echo "Installing www terminal app..."
+cp -fr ./apps/www-terminal /apps/terminal
+
+
+echo "Installing downloader app..."
 git clone --branch $app_downloader_version $app_downloader_repo /apps/downloader
 cd /apps/downloader
 npm install
+echo "Installing monitoring app..."
 git clone --branch $app_monitoring_version $app_monitoring_repo /apps/monitoring
 cd /apps/monitoring
 npm install
-
-cd $WORKING_DIR
-cp -fr ./apps/terminal /apps/terminal
 
 cd $WORKING_DIR
 
