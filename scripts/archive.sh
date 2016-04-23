@@ -57,12 +57,14 @@ echo ${count} > ${package_size_file}
 log "Incremented CURRENT_PACKAGE_SIZE="${count}
 
 PACKAGE_PATH="${data_packages_dir}/${PACKAGE_NAME}"
-PACKAGE_FILES="${data_dir}/${FILES_PREFIX}""*"
+PACKAGE_FILES="${FILES_PREFIX}""*"
 log " "
 log "Package paht: "$PACKAGE_PATH
 log "Package files: "$PACKAGE_FILES
 log " "
 log " "
+
+cd ${data_dir}
 
 for f in "${PACKAGE_FILES}"; do
   log "Adding files -> $f"
