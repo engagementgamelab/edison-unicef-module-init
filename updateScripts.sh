@@ -2,4 +2,4 @@
 
 cd /media/sdcard
 git pull
-cp -rf ~/scripts/* ~/scripts
+cp -rf ./scripts/* ~/scripts
