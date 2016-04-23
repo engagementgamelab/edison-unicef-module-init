@@ -1,0 +1,21 @@
+[Unit]
+Description=Unicef_Www_Terminal_Service
+Requires=unicef-init
+After=unicef-init.service
+
+[Service]
+Environment="NODE_PATH=/usr/lib/node_modules"
+Environment="NODE_ENV=production"
+Environment="AVAHI_COMPAT_NOWARN=1"
+Environment="HOME=/home/root"
+
+Environment="MODULE_APP_DIR=/apps/terminal"
+Environment="DOWNLOADER_PORT=80"
+
+ExecStart=/bin/su root -c 'node ${MODULE_APP_DIR}/app.js -p 1234'
+
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target

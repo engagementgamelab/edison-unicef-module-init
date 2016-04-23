@@ -90,13 +90,17 @@ cp -rf ./ffmpeg/* /home/root/ffmpeg
 # copy the apps
 echo "Downloading the apps..."
 rm -fr /apps
-mkdir -p /apps
+mkdir -p /apps/terminal
+
 git clone --branch $app_downloader_version $app_downloader_repo /apps/downloader
 cd /apps/downloader
 npm install
 git clone --branch $app_monitoring_version $app_monitoring_repo /apps/monitoring
 cd /apps/monitoring
 npm install
+
+cd $WORKING_DIR
+cp -fr ./apps/terminal /apps/terminal
 
 cd $WORKING_DIR
 
@@ -142,6 +146,11 @@ echo "Binding unicef-monitoring-daemon service..."
 cp -rf ./unicef-monitoring-daemon.service /lib/systemd/system/
 systemctl enable unicef-monitoring-daemon
 
+# add terminal daemon service
+echo "Binding unicef-www-terminal-daemon service..."
+cp -rf ./unicef-www-terminal-daemon.service /lib/systemd/system/
+systemctl enable unicef-www-terminal-daemon
+
 # init reboot count
 echo "Initializing ${reboot_count_file} = 0"
 builtin echo "0" > $reboot_count_file
@@ -153,14 +162,16 @@ builtin echo "unicef" > /etc/hostname
 info "*** Initialization completed successfully ***"
 echo ""
 echo "Service controll:"
-echo "    systemctl start unicef-monitoring-daemon"
 echo "    systemctl start unicef-downloader"
+echo "    systemctl start unicef-monitoring-daemon"
+echo "    systemctl start unicef-www-terminal-daemon"
 
 echo ""
 echo "Service logs:"
-echo "    journalctl -f -u unicef-downloader"
 echo "    journalctl -f -u unicef-init"
+echo "    journalctl -f -u unicef-downloader"
 echo "    journalctl -f -u unicef-monitoring-daemon"
+echo "    journalctl -f -u unicef-www-terminal-daemon"
 echo " "
 echo " "
 echo " "
