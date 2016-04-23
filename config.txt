@@ -2,7 +2,7 @@ wifi_ssid="INSERT_YOUR_WIFI_SSID_HERE"
 wifi_pass="INSERT_YOUR_WIFI_PASSWORD"
 ap_ssid="unicef_"${module_id}
 ap_pass="unicefghana"
-app_monitoring_version=0.0.1
+app_monitoring_version=master
 app_downloader_version=master
 module_ssh_password="edison"
 
