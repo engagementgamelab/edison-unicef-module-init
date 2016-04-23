@@ -5,7 +5,7 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
 log(){
-	printf `date`"   ${YELLOW}$1${NC}\n"
+	printf "${GREEN}$1${NC}\n"
 }
 
 createPackageName(){
@@ -48,8 +48,6 @@ else
 fi
 
 log "Appending files *${FILES_PREFIX}* to package ${PACKAGE_NAME}"
-log "Package paht: "$PACKAGE_PATH
-log "Package files: "$PACKAGE_FILES
 
 count=`cat ${package_size_file}`
 count=$((count+1))
@@ -59,10 +57,13 @@ log "Incremented CURRENT_PACKAGE_SIZE="${count}
 PACKAGE_PATH="${data_packages_dir}/${PACKAGE_NAME}"
 PACKAGE_FILES="${data_dir}/${FILES_PREFIX}""*"
 
+log "Package paht: "$PACKAGE_PATH
+log "Package files: "$PACKAGE_FILES
+log " "
 log " "
 
 for f in "${PACKAGE_FILES}"; do
-  log "Adding file -> $f"
+  log "Adding files -> $f"
   tar -rvf $PACKAGE_PATH $f
 done
 
