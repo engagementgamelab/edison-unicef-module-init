@@ -11,4 +11,4 @@ touch $data_dir/$NEW_PACKAGE_PREFIX.jpg
 touch $data_dir/$NEW_PACKAGE_PREFIX.mpeg
 touch $data_dir/$NEW_PACKAGE_PREFIX.txt
 
-echo $NEW_PACKAGE_PREFIX
+./archive.sh $NEW_PACKAGE_PREFIX
