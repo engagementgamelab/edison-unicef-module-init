@@ -55,7 +55,7 @@ PACKAGE_PATH="${data_packages_dir}/${PACKAGE_NAME}"
 PACKAGE_FILES="${data_dir}/${FILES_PREFIX}""*"
 echo $PACKAGE_PATH
 echo $PACKAGE_FILES
-tar -zcvf $PACKAGE_PATH $PACKAGE_FILES
+tar -rvf $PACKAGE_PATH $PACKAGE_FILES
 
 rm -fr $PACKAGE_FILES
 
