@@ -3,7 +3,7 @@ wifi_pass="INSERT_YOUR_WIFI_PASSWORD"
 ap_ssid="unicef_"${module_id}
 ap_pass="unicefghana"
 app_monitoring_version=0.0.1
-app_downloader_version=0.0.1
+app_downloader_version=master
 module_ssh_password="edison"
 
 # DO NOT MODIFY ANYTHING BELOW THIS LINE
@@ -16,5 +16,5 @@ app_monitoring_repo=https://github.com/maestr0/edison-unicef-module-monitoring.g
 ffmpeg_binary_path="/home/root/ffmpeg/ffmpeg"
 package_size_file="/home/root/CURRENT_PACKAGE_SIZE"
 package_name_file="/home/root/CURRENT_PACKAGE_NAME"
-max_package_size=100
+max_package_size=10
 reboot_count_file="/home/root/REBOOT_COUNT"
