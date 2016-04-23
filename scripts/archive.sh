@@ -9,7 +9,9 @@ log(){
 }
 
 createPackageName(){
-	log "Creating package name..."
+	log " "
+	log "	Creating new package name..."
+	log " "
 	date_string=`date +"%Y_%m_%d-%H_%M_%S"`
 	random_string=`< /dev/urandom tr -dc A-Za-z0-9 | head -c20`
 	reboot_count=`cat ${reboot_count_file}`
@@ -47,8 +49,8 @@ else
 	PACKAGE_NAME=$CURRENT_PACKAGE_NAME
 fi
 
-log "Appending files *${FILES_PREFIX}* to package ${PACKAGE_NAME}"
-
+log "Appending files..."
+log " "
 count=`cat ${package_size_file}`
 count=$((count+1))
 echo ${count} > ${package_size_file}
@@ -56,7 +58,7 @@ log "Incremented CURRENT_PACKAGE_SIZE="${count}
 
 PACKAGE_PATH="${data_packages_dir}/${PACKAGE_NAME}"
 PACKAGE_FILES="${data_dir}/${FILES_PREFIX}""*"
-
+log " "
 log "Package paht: "$PACKAGE_PATH
 log "Package files: "$PACKAGE_FILES
 log " "
