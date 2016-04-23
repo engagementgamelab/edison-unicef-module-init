@@ -1,8 +1,11 @@
 #!/bin/sh
 source ./config.txt
 
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 log(){
-	echo `date`": "$1
+	printf `date`"   ${YELLOW}$1${NC}\n"
 }
 
 createPackageName(){
@@ -10,7 +13,7 @@ createPackageName(){
 	date_string=`date +"%Y_%m_%d-%H_%M_%S"`
 	random_string=`< /dev/urandom tr -dc A-Za-z0-9 | head -c20`
 	reboot_count=`cat ${reboot_count_file}`
-	NEW_PACKAGE_NAME="${reboot_count}_${date_string}_${random_string}.tar.gz"	
+	NEW_PACKAGE_NAME="${reboot_count}_${date_string}_${random_string}.tar"	
 
 	log "Creating new package ${NEW_PACKAGE_NAME} ..."
 	echo "0" > ${package_size_file}
@@ -45,20 +48,21 @@ else
 fi
 
 log "Appending files *${FILES_PREFIX}* to package ${PACKAGE_NAME}"
+log "Package paht: "$PACKAGE_PATH
+log "Package files: "$PACKAGE_FILES
 
 count=`cat ${package_size_file}`
 count=$((count+1))
 echo ${count} > ${package_size_file}
-echo "Incremented CURRENT_PACKAGE_SIZE="${count}
+log "Incremented CURRENT_PACKAGE_SIZE="${count}
 
 PACKAGE_PATH="${data_packages_dir}/${PACKAGE_NAME}"
 PACKAGE_FILES="${data_dir}/${FILES_PREFIX}""*"
 
-echo "Package paht: "$PACKAGE_PATH
-echo "Package files: "$PACKAGE_FILES
+log " "
 
-for f in "${PACKAGE_FILES}*"; do
-  echo "Adding file -> $f"
+for f in "${PACKAGE_FILES}"; do
+  log "Adding file -> $f"
   tar -rvf $PACKAGE_PATH $f
 done
 
