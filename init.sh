@@ -133,6 +133,9 @@ cp -rf .vimrc /home/root
 systemctl disable edison_config
 systemctl disable wpa_supplicant
 
+# monitoring app error log dir
+mkdir -p /home/root/log
+
 #symlink to services
 rm -fr ~/services
 ln -s /lib/systemd/system ~/services
