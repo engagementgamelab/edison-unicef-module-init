@@ -61,6 +61,9 @@ else
   exit -1
 fi
 
+echo "Enabling SSH access..."
+cp -fr ./sshd.socket /lib/systemd/system/sshd.socket
+
 echo "Unblocking wlan ..."
 rfkill unblock wlan
 echo "Starting wpa_supplicant ..."
