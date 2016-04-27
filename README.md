@@ -2,13 +2,11 @@ TODO
 ====
 
 
-+ disable wifi on start
+- ~~disable wifi on start~~
 
-+ sleep at midnight script?
+- ~~ffmpeg~~
 
-+ ffmpeg
-
-+ install all the node modules
+- ~~install all the node modules~~
 
 - ~~disable the downloader service on start~~
 
