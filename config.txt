@@ -1,6 +1,3 @@
-wifi_ssid="INSERT_YOUR_WIFI_SSID_HERE"
-wifi_pass="INSERT_YOUR_WIFI_PASSWORD"
-ap_ssid="unicef_"${module_id}
 ap_pass="unicefghana"
 app_monitoring_version=master
 app_downloader_version=master
@@ -8,6 +5,7 @@ module_ssh_password="edison"
 
 # DO NOT MODIFY ANYTHING BELOW THIS LINE
 module_id=`cat /factory/serial_number`
+ap_ssid="unicef_"${module_id}
 data_root_dir=/media/sdcard
 data_packages_dir=${data_root_dir}/packages
 data_dir=${data_root_dir}/data
