@@ -79,9 +79,11 @@ echo "Waiting for WIFI...5s"
 sleep 5
 ifconfig wlan0
 
-# install git
+echo "Installing MRAA, VIM, TAR..."
+builtin echo "src mraa-upm http://iotdk.intel.com/repos/3.0/intelgalactic/opkg/i586" > /etc/opkg/mraa-upm.conf
 cp -rf ./base-feeds.conf /etc/opkg/
 opkg update
+opkg install mraa
 opkg install vim
 opkg install tar
 
