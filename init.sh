@@ -87,6 +87,9 @@ opkg install mraa
 opkg install vim
 opkg install tar
 
+echo "Fixing MRAA..."
+cp /usr/lib/libmraa.so /usr/lib/libmraa.so.0
+
 # ffmpeg
 echo "Installing ffmpeg..."
 mkdir -p /home/root/ffmpeg
