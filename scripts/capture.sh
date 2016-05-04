@@ -5,4 +5,16 @@ FILE_PREFIX=$1
 
 OUTPUT=${data_dir}"/"$FILE_PREFIX".mpeg"
 
-$ffmpeg_binary_path -s 1024x768 -f video4linux2  -i /dev/video0 -f mpeg1video -b 800k -r 30 -t 50 $OUTPUT
+# fs - max file size 10MB
+# y always overwrite
+# stats - stats
+# s resolution
+# f codec
+# i input dev
+# t - time
+# r framerate
+# b bitrate
+# f output format
+$ffmpeg_binary_path  -y -stats -f video4linux2 -i /dev/video0 -s 1024x768 -video_size hd720 -b 800k -t 40 -r 30 $OUTPUT
+
+#ffmpeg -y -stats -f video4linux2 -i /dev/video0 -s 1024x768 -video_size hd720 -b 800k -t 20 -r 30
