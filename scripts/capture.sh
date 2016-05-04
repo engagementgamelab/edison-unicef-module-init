@@ -1,5 +1,5 @@
 #!/bin/sh
-source ./config.txt
+source /home/root/scripts/config.txt
 
 FILE_PREFIX=$1
 
