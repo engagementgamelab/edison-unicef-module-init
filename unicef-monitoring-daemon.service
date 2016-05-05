@@ -12,7 +12,7 @@ Environment="HOME=/home/root"
 Environment="MODULE_DATA_DIR=/media/sdcard/data"
 Environment="MODULE_APP_DIR=/apps/monitoring"
 Environment="SCRIPTS=/home/root/scripts"
-Environment="REBOOT_COUNT=/home/root/REBOOT_COUNT"
+Environment="REBOOT_COUNT_PATH=/home/root/REBOOT_COUNT"
 Environment="MONITORING_PORT=8080"
 
 ExecStart=/bin/su root -c 'node ${MODULE_APP_DIR}/app.js'

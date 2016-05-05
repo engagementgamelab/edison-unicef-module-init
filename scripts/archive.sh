@@ -1,5 +1,5 @@
 #!/bin/sh
-source ./config.txt
+source /home/root/scripts/config.txt
 
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color

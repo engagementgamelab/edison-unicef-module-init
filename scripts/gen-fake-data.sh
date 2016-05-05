@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ./config.txt
+source /home/root/scripts/config.txt
 
 date_string=`date +"%Y_%m_%d-%H_%M_%S"`
 random_string=`< /dev/urandom tr -dc A-Za-z0-9 | head -c20`
