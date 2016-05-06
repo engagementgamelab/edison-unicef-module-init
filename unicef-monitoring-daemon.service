@@ -15,7 +15,7 @@ Environment="SCRIPTS=/home/root/scripts"
 Environment="REBOOT_COUNT_PATH=/home/root/REBOOT_COUNT"
 Environment="MONITORING_PORT=8080"
 
-ExecStart=/bin/su root -c 'node ${MODULE_APP_DIR}/app.js'
+ExecStart=/bin/su root -c 'REBOOT_COUNT=`cat /home/root/REBOOT_COUNT` SERIAL_NUMBER=`cat /factory/serial_number` node ${MODULE_APP_DIR}/app.js'
 
 Restart=always
 RestartSec=10s
