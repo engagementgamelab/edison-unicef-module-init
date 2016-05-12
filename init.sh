@@ -25,6 +25,9 @@ info(){
 	printf "${GREEN}$1${NC}\n"
 }
 
+echo "Initializing sdcard"
+mkdir /media/sdcard
+
 echo "Initializing module "${module_id}
 
 # init ssh access (ssh -i ~/.ssh/unicef_rsa root@192.168.2.15)
