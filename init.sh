@@ -25,9 +25,6 @@ info(){
 	printf "${GREEN}$1${NC}\n"
 }
 
-echo "Initializing sdcard"
-mkdir /media/sdcard
-
 echo "Initializing module "${module_id}
 
 # init ssh access (ssh -i ~/.ssh/unicef_rsa root@192.168.2.15)
@@ -118,7 +115,7 @@ npm install
 
 cd $WORKING_DIR
 
-echo "Initializing data dirs..."
+echo "Initializing SDCARD data dirs..."
 mkdir -p $data_packages_dir
 mkdir -p $data_dir
 
