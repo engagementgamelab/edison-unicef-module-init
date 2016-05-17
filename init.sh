@@ -34,31 +34,25 @@ cat ./ssh_keys/*.pub >> /home/root/.ssh/authorized_keys
 chmod 600 /home/root/.ssh/*
 ./scripts/set_r00t_pass.sh $module_ssh_password
 
-# add WIFI config (wpa_supplicant)
-# temp init config and AP mode config (unique SSID)
-#echo "Stopping wlan0 ..."
-#ifconfig wlan0 down
-#echo "Stopping wpa_supplicant ..."
-#systemctl stop wpa_supplicant
-# sed "s/__WIFI_SSID__/${wifi_ssid}/g;s/__WIFI_PASS__/${wifi_pass}/g" wpa_supplicant.conf.template > wpa_supplicant.conf
-# cp -rf ./wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
 sed "s/__AP_SSID__/${ap_ssid}/g;s/__AP_PASS__/${ap_pass}/g" hostapd.conf.template > hostapd.conf
 cp -rf ./hostapd.conf /etc/hostapd/hostapd.conf
 
 important "Connect Module to your WIFI network with Internet..."
 sleep 5
-configure_edison --wifi
-
-ping -c 1 google.com &>/dev/null
-
-if [ $? -eq 0 ]
-then
-  echo "WIFI configuration OK"
+if [ -f wpa_supplicant.conf ]; then	
+    important "WIFI configuration file found"
+    cp -rf ./wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
+    echo "Stopping wlan0 ..."
+	ifconfig wlan0 down
+	echo "Stopping wpa_supplicant ..."
+	systemctl stop wpa_supplicant
+	systemctl start wpa_supplicant
+	echo "Starting WIFI..."
+	ifconfig wlan0 up
 else
-  error "********************************************"
-  error "*** ERROR 001. WIFI configuration failed ***"
-  error "********************************************"
-  exit -1
+	configure_edison --wifi 
+	important "Copying WIFI configuration file on SDCARD..."
+    cp -rf /etc/wpa_supplicant/wpa_supplicant.conf .
 fi
 
 echo "Enabling SSH access..."
@@ -78,6 +72,18 @@ sleep 5
 echo "Waiting for WIFI...5s"
 sleep 5
 ifconfig wlan0
+
+ping -c 1 google.com &>/dev/null
+
+if [ $? -eq 0 ]
+then
+  echo "WIFI configuration OK"
+else
+  error "********************************************"
+  error "*** ERROR 001. WIFI configuration failed ***"
+  error "********************************************"
+  exit -1
+fi
 
 echo "Installing MRAA, VIM, TAR..."
 builtin echo "src mraa-upm http://iotdk.intel.com/repos/3.0/intelgalactic/opkg/i586" > /etc/opkg/mraa-upm.conf
