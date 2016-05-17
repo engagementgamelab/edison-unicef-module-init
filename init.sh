@@ -123,6 +123,7 @@ cd $WORKING_DIR
 
 echo "Initializing SDCARD data dirs..."
 mkdir -p $data_packages_dir
+mkdir -p $data_packages_dir/logs
 mkdir -p $data_dir
 
 echo "Initializing data packages..."
