@@ -1,2 +1,3 @@
 ./ssh_keys/unicef_rsa
 ./wpa_supplicant.conf
+npm-debug.log
