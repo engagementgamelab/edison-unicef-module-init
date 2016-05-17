@@ -55,18 +55,6 @@ else
     cp -rf /etc/wpa_supplicant/wpa_supplicant.conf .
 fi
 
-ping -c 1 google.com &>/dev/null
-
-if [ $? -eq 0 ]
-then
-  echo "WIFI configuration OK"
-else
-  error "********************************************"
-  error "*** ERROR 001. WIFI configuration failed ***"
-  error "********************************************"
-  exit -1
-fi
-
 echo "Enabling SSH access..."
 cp -fr ./sshd.socket /lib/systemd/system/sshd.socket
 
@@ -84,6 +72,18 @@ sleep 5
 echo "Waiting for WIFI...5s"
 sleep 5
 ifconfig wlan0
+
+ping -c 1 google.com &>/dev/null
+
+if [ $? -eq 0 ]
+then
+  echo "WIFI configuration OK"
+else
+  error "********************************************"
+  error "*** ERROR 001. WIFI configuration failed ***"
+  error "********************************************"
+  exit -1
+fi
 
 echo "Installing MRAA, VIM, TAR..."
 builtin echo "src mraa-upm http://iotdk.intel.com/repos/3.0/intelgalactic/opkg/i586" > /etc/opkg/mraa-upm.conf
