@@ -145,6 +145,10 @@ cp -rf .vimrc /home/root
 systemctl disable edison_config
 systemctl disable wpa_supplicant
 
+# disable redis
+systemctl disable redis
+systemctl disable pulseaudio
+
 # monitoring app error log dir
 mkdir -p /home/root/log
 

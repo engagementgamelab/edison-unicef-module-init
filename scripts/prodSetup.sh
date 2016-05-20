@@ -13,4 +13,6 @@ systemctl enable unicef-monitoring-daemon
 systemctl enable unicef-downloader
 systemctl disable edison_config
 systemctl disable wpa_supplicant
+systemctl disable redis
+systemctl disable pulseaudio
 reboot now
