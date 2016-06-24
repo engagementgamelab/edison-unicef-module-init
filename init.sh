@@ -182,11 +182,11 @@ builtin echo "0" > $reboot_count_file
 
 # init rotational speed value
 echo "Initializing ${rotational_speed_file} = 16"
-builtin echo "16" > $rotational_speed_file
+echo "16" > /home/root/ROTATION_SPEED
 
 # init rotational duration value
 echo "Initializing ${rotation_duration_file} = 7"
-builtin echo "7" > $rotation_duration_file
+echo "7" > /home/root/ROTATION_DURATION
 
 
 
