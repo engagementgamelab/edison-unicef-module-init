@@ -180,6 +180,16 @@ systemctl enable unicef-www-terminal-daemon
 echo "Initializing ${reboot_count_file} = 0"
 builtin echo "0" > $reboot_count_file
 
+# init rotational speed value
+echo "Initializing ${rotational_speed_file} = 16"
+builtin echo "16" > $rotational_speed_file
+
+# init rotational duration value
+echo "Initializing ${rotation_duration_file} = 7"
+builtin echo "7" > $rotation_duration_file
+
+
+
 # update hostname
 echo "Updating hostname so Edison will be available as 'unicef.local'"
 builtin echo "unicef" > /etc/hostname

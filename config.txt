@@ -16,3 +16,5 @@ package_size_file="/home/root/CURRENT_PACKAGE_SIZE"
 package_name_file="/home/root/CURRENT_PACKAGE_NAME"
 max_package_size=100
 reboot_count_file="/home/root/REBOOT_COUNT"
+rotational_speed_file=“/home/root/ROTATION_SPEED”
+rotation_duration_file=“/home/root/ROTATION_DURATION”
