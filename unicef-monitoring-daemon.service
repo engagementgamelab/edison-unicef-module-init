@@ -15,10 +15,10 @@ Environment="SCRIPTS=/home/root/scripts"
 Environment="REBOOT_COUNT_PATH=/home/root/REBOOT_COUNT"
 Environment="MONITORING_PORT=8080"
 Environment="MODULE_PACKAGES_DIR=/media/sdcard/packages"
-Environment="ROTATION_SPEED=/home/root/ROTATION_SPEED"
-ROTATION_DURATION=/home/root/ROTATION_DURATION
+Environment="ROTATION_SPEED_PATH=/home/root/ROTATION_SPEED"
+Environment="ROTATION_DURATION_PATH=/home/root/ROTATION_DURATION"
 
-ExecStart=/bin/su root -c 'REBOOT_COUNT=`cat /home/root/REBOOT_COUNT` SERIAL_NUMBER=`cat /factory/serial_number` node ${MODULE_APP_DIR}/app.js'
+ExecStart=/bin/su root -c 'ROTATION_DURATION=`cat /home/root/ROTATION_DURATION` ROTATION_SPEED=`cat /home/root/ROTATION_SPEED` REBOOT_COUNT=`cat /home/root/REBOOT_COUNT` SERIAL_NUMBER=`cat /factory/serial_number` node ${MODULE_APP_DIR}/app.js'
 
 Restart=always
 RestartSec=10s
