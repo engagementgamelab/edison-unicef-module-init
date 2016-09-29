@@ -16,4 +16,6 @@ systemctl disable edison_config
 systemctl disable wpa_supplicant
 systemctl disable redis
 systemctl disable pulseaudio
+systemctl stop blink-led
+systemctl disable blink-led
 reboot now
