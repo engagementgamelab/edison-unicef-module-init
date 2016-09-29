@@ -11,6 +11,7 @@ npm install
 echo "enabling production services..."
 systemctl enable unicef-monitoring-daemon
 systemctl enable unicef-downloader
+systemctl stop edison_config
 systemctl disable edison_config
 systemctl disable wpa_supplicant
 systemctl disable redis
