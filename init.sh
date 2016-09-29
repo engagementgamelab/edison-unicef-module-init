@@ -142,8 +142,13 @@ cp -rf .profile /home/root
 cp -rf .vimrc /home/root
 
 # disable edison edison_config
+systemctl stop edison_config
 systemctl disable edison_config
 systemctl disable wpa_supplicant
+systemctl stop blink-led
+systemctl disable blink-led
+
+
 
 # disable redis
 systemctl disable redis
