@@ -96,10 +96,10 @@ opkg install tar
 echo "Fixing MRAA..."
 cp /usr/lib/libmraa.so /usr/lib/libmraa.so.0
 
-# ffmpeg
-echo "Installing ffmpeg..."
-mkdir -p /home/root/ffmpeg
-cp -rf ./ffmpeg/* /home/root/ffmpeg
+# # ffmpeg
+# echo "Installing ffmpeg..."
+# mkdir -p /home/root/ffmpeg
+# cp -rf ./ffmpeg/* /home/root/ffmpeg
 
 # copy the apps
 rm -fr /apps
@@ -115,20 +115,41 @@ git clone --branch $app_downloader_version $app_downloader_repo /apps/downloader
 cd /apps/downloader
 npm install
 echo "Installing monitoring app..."
+# git clone --branch $app_monitoring_version $app_monitoring_repo /apps/monitoring
+# cd /apps/monitoring
+# npm install
+
 git clone --branch $app_monitoring_version $app_monitoring_repo /apps/monitoring
-cd /apps/monitoring
-npm install
+# cd /apps/monitoring
+# npm install
+
+chmod +x /apps/monitoring/scripts/startup.sh;
+chmod +x /apps/monitoring/scripts/shutdown.sh;
+
+# Install cronie
+opkg install cronie;
 
 cd $WORKING_DIR
+
+echo "Creating cron jobs for start and stopping monitor";
+crontab -l > unicefcron;
+
+echo "* 8 * * 1-5 systemctl start unicef-monitor >/dev/null 2>&1" >> unicefcron;
+echo "* 15 * * 0,1,2,3,4,5,6 systemctl stop unicef-monitor >/dev/null 2>&1" >> unicefcron;
+
+crontab unicefcron;
+rm unicefcron;
 
 echo "Initializing SDCARD data dirs..."
 mkdir -p $data_packages_dir
 mkdir -p $data_packages_dir/logs
+mkdir -p $data_root_dir/sensor_data
 mkdir -p $data_dir
 
 echo "Initializing data packages..."
 touch $package_size_file
 touch $package_name_file
+touch $data_root_dir/date.txt
 
 # scripts
 echo "Installing scripts..."
@@ -147,8 +168,6 @@ systemctl disable edison_config
 systemctl disable wpa_supplicant
 systemctl stop blink-led
 systemctl disable blink-led
-
-
 
 # disable redis
 systemctl disable redis
@@ -172,9 +191,19 @@ cp -rf ./unicef-downloader.service /lib/systemd/system/
 systemctl enable unicef-downloader
 
 # add monitoring daemon service
-echo "Binding unicef-monitoring-daemon service..."
-cp -rf ./unicef-monitoring-daemon.service /lib/systemd/system/
-systemctl enable unicef-monitoring-daemon
+# echo "Binding unicef-monitoring-daemon service..."
+# cp -rf ./unicef-monitoring-daemon.service /lib/systemd/system/
+# systemctl enable unicef-monitoring-daemon
+
+# Enable monitor service
+echo "Binding new unicef-monitor service..."
+cp -rf ./unicef-monitor.service /lib/systemd/system/;
+systemctl enable unicef-monitor;
+
+# Disable old monitor
+echo "Disabling old unicef-monitoring-daemon service..."
+systemctl stop unicef-monitoring-daemon
+systemctl disable unicef-monitoring-daemon
 
 # add terminal daemon service
 echo "Binding unicef-www-terminal-daemon service..."
@@ -192,7 +221,6 @@ echo "20" > /home/root/ROTATION_SPEED
 # init rotational duration value
 echo "Initializing ${rotation_duration_file} = 20"
 echo "20" > /home/root/ROTATION_DURATION
-
 
 
 # update hostname
