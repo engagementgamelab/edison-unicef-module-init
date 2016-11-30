@@ -104,6 +104,8 @@ cp /usr/lib/libmraa.so /usr/lib/libmraa.so.0
 # copy the apps
 rm -fr /apps
 mkdir -p /apps/terminal
+mkdir -p /apps/downloader
+mkdir -p /apps/monitoring
 
 echo "Installing www terminal app..."
 cp -fr ./apps/www-terminal/* /apps/terminal/
