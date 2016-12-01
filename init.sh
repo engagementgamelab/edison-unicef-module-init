@@ -106,6 +106,7 @@ rm -fr /apps
 mkdir -p /apps/terminal
 mkdir -p /apps/downloader
 mkdir -p /apps/monitoring
+mkdir -p /sketch
 
 echo "Installing www terminal app..."
 cp -fr ./apps/www-terminal/* /apps/terminal/
@@ -116,17 +117,20 @@ echo "Installing downloader app..."
 git clone --branch $app_downloader_version $app_downloader_repo /apps/downloader
 cd /apps/downloader
 npm install
-echo "Installing monitoring app..."
+
+echo "Removing old and then installing new monitoring app..."
 # git clone --branch $app_monitoring_version $app_monitoring_repo /apps/monitoring
 # cd /apps/monitoring
 # npm install
 
+rm -rf /apps/monitoring
+mkdir /apps/monitoring
 git clone --branch $app_monitoring_version $app_monitoring_repo /apps/monitoring
-# cd /apps/monitoring
-# npm install
 
 chmod +x /apps/monitoring/scripts/startup.sh;
 chmod +x /apps/monitoring/scripts/shutdown.sh;
+
+mv /apps/monitoring/app/sketch.elf /sketch/sketch.elf;
 
 # Install cronie
 opkg install cronie;
