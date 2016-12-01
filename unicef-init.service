@@ -9,7 +9,7 @@ TimeoutSec=0
 StandardOutput=journal+console
 RemainAfterExit=yes
 SysVStartPriority=99
-ExecStart=/bin/su root -c '/home/root/scripts/updateRebootCount.sh'
+ExecStart=/bin/su root -c '/home/root/scripts/updateRebootCount.sh /home/root/scripts/startAp.sh'
 
 [Install]
 WantedBy=multi-user.target
