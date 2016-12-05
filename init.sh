@@ -150,6 +150,7 @@ echo "Initializing SDCARD data dirs..."
 mkdir -p $data_packages_dir
 mkdir -p $data_packages_dir/logs
 mkdir -p $data_root_dir/sensor_data
+mkdir -p $data_root_dir/sensor_data/$module_id
 mkdir -p $data_dir
 
 echo "Initializing data packages..."
