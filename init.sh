@@ -153,6 +153,12 @@ mkdir -p $data_root_dir/sensor_data
 mkdir -p $data_root_dir/sensor_data/$module_id
 mkdir -p $data_dir
 
+# Create serial # file if missing and save serial for use by monitor sketch
+if [ ! -f "/media/sdcard/serial.txt" ]; then
+	touch "/media/sdcard/serial.txt";
+	echo "$module_id" > /media/sdcard/serial.txt;
+fi
+
 echo "Initializing data packages..."
 touch $package_size_file
 touch $package_name_file
