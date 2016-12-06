@@ -156,7 +156,7 @@ mkdir -p $data_dir
 # Create serial # file if missing and save serial for use by monitor sketch
 if [ ! -f "/media/sdcard/serial.txt" ]; then
 	touch "/media/sdcard/serial.txt";
-	echo "$module_id" > /media/sdcard/serial.txt;
+	echo "$(cat /factory/serial_number)" > /media/sdcard/serial.txt;
 fi
 
 echo "Initializing data packages..."
