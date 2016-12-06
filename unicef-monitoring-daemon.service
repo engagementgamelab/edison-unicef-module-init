@@ -1,6 +1,6 @@
 [Unit]
 Description=Unicef_Monitoring_Daemon
-Requires=unicef-init
+Requires=unicef-init.service
 After=unicef-init.service
 
 [Service]

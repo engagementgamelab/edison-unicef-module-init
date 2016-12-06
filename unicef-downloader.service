@@ -1,6 +1,6 @@
 [Unit]
 Description=Unicef_Downloader_Service
-Requires=unicef-init
+Requires=unicef-init.service
 After=unicef-init.service
 
 [Service]
