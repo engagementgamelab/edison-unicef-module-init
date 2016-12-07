@@ -138,13 +138,7 @@ opkg install cronie;
 cd $WORKING_DIR
 
 echo "Creating cron jobs for start and stopping monitor";
-crontab -l > unicefcron;
-
-echo "* 8 * * 1-5 systemctl start unicef-monitor >/dev/null 2>&1" >> unicefcron;
-echo "* 15 * * 0,1,2,3,4,5,6 systemctl stop unicef-monitor >/dev/null 2>&1" >> unicefcron;
-
 crontab unicefcron;
-rm unicefcron;
 
 echo "Initializing SDCARD data dirs..."
 mkdir -p $data_packages_dir
@@ -261,5 +255,5 @@ important "**********************************"
 important "Edison will reboot in 5 seconds..."
 important "SSH password is ${module_ssh_password}"
 important "**********************************"
-sleep 5
-reboot now
+# sleep 5
+# reboot now

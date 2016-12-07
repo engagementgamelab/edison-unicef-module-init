@@ -4,6 +4,8 @@ Requires=unicef-init.service
 After=unicef-init.service
 
 [Service]
+Type=oneshot
+
 Environment="NODE_PATH=/usr/lib/node_modules"
 Environment="NODE_ENV=production"
 Environment="AVAHI_COMPAT_NOWARN=1"
@@ -13,10 +15,9 @@ Environment="MODULE_PACKAGES_DIR=/media/sdcard/packages"
 Environment="MODULE_APP_DIR=/apps/downloader"
 Environment="DOWNLOADER_PORT=80"
 
-ExecStart=/bin/su root -c 'REBOOT_COUNT=`cat /home/root/REBOOT_COUNT` SERIAL_NUMBER=`cat /factory/serial_number` node ${MODULE_APP_DIR}/index.js'
+RemainAfterExit=yes
 
-Restart=always
-RestartSec=10s
+ExecStart=/bin/su root -c 'REBOOT_COUNT=`cat /home/root/REBOOT_COUNT` SERIAL_NUMBER=`cat /factory/serial_number` node ${MODULE_APP_DIR}/index.js'
 
 [Install]
 WantedBy=multi-user.target
