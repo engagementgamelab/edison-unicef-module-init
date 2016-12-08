@@ -255,5 +255,5 @@ important "**********************************"
 important "Edison will reboot in 5 seconds..."
 important "SSH password is ${module_ssh_password}"
 important "**********************************"
-# sleep 5
-# reboot now
+sleep 5
+reboot now
