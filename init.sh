@@ -102,7 +102,7 @@ cp /usr/lib/libmraa.so /usr/lib/libmraa.so.0
 # cp -rf ./ffmpeg/* /home/root/ffmpeg
 
 # copy the apps
-rm -fr /apps
+rm -rf /apps
 mkdir -p /apps/terminal
 mkdir -p /apps/downloader
 mkdir -p /apps/monitoring
@@ -192,7 +192,7 @@ systemctl enable unicef-downloader
 # cp -rf ./unicef-monitoring-daemon.service /lib/systemd/system/
 # systemctl enable unicef-monitoring-daemon
 
-# Enable monitor service
+# Bind monitor service
 echo "Binding new unicef-monitor service but disabling for now..."
 cp -rf ./unicef-monitor.service /lib/systemd/system/;
 systemctl disable unicef-monitor;
