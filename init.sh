@@ -119,10 +119,6 @@ cd /apps/downloader
 npm install
 
 echo "Removing old and then installing new monitoring app..."
-# git clone --branch $app_monitoring_version $app_monitoring_repo /apps/monitoring
-# cd /apps/monitoring
-# npm install
-
 rm -rf /apps/monitoring
 mkdir /apps/monitoring
 git clone --branch $app_monitoring_version $app_monitoring_repo /apps/monitoring
@@ -197,9 +193,9 @@ systemctl enable unicef-downloader
 # systemctl enable unicef-monitoring-daemon
 
 # Enable monitor service
-echo "Binding new unicef-monitor service..."
+echo "Binding new unicef-monitor service but disabling for now..."
 cp -rf ./unicef-monitor.service /lib/systemd/system/;
-systemctl enable unicef-monitor;
+systemctl disable unicef-monitor;
 
 # Disable old monitor
 echo "Disabling old unicef-monitoring-daemon service..."
