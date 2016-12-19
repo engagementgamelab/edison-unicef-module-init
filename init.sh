@@ -37,22 +37,32 @@ chmod 600 /home/root/.ssh/*
 sed "s/__AP_SSID__/${ap_ssid}/g;s/__AP_PASS__/${ap_pass}/g" hostapd.conf.template > hostapd.conf
 cp -rf ./hostapd.conf /etc/hostapd/hostapd.conf
 
-important "Connect Module to your WIFI network with Internet..."
-sleep 5
-if [ -f wpa_supplicant.conf ]; then	
-    important "WIFI configuration file found"
-    cp -rf ./wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
-    echo "Stopping wlan0 ..."
-	ifconfig wlan0 down
-	echo "Stopping wpa_supplicant ..."
-	systemctl stop wpa_supplicant
-	systemctl start wpa_supplicant
-	echo "Starting WIFI..."
-	ifconfig wlan0 up
+wifi=`configure_edison --showWiFiIP`
+
+if [ "$wifi" = "none" ]
+then
+  echo "WIFI disconnected, looking for config to connect with";
+
+	important "Connect Module to your WIFI network with Internet..."
+	sleep 5
+	if [ -f wpa_supplicant.conf ]; then	
+	    important "WIFI configuration file found"
+	    cp -rf ./wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf
+	    echo "Stopping wlan0 ..."
+		ifconfig wlan0 down
+		echo "Stopping wpa_supplicant ..."
+		systemctl stop wpa_supplicant
+		systemctl start wpa_supplicant
+		echo "Starting WIFI..."
+		ifconfig wlan0 up
+	else
+		configure_edison --wifi 
+		important "Copying WIFI configuration file on SDCARD..."
+	    cp -rf /etc/wpa_supplicant/wpa_supplicant.conf .
+	fi
+
 else
-	configure_edison --wifi 
-	important "Copying WIFI configuration file on SDCARD..."
-    cp -rf /etc/wpa_supplicant/wpa_supplicant.conf .
+  echo "WIFI connected";
 fi
 
 echo "Enabling SSH access..."
