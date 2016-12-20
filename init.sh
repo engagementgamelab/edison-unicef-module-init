@@ -139,12 +139,13 @@ chmod +x /apps/monitoring/scripts/shutdown.sh;
 mv /apps/monitoring/app/sketch.elf /sketch/sketch.elf;
 
 # Install cronie
-opkg install cronie;
+# opkg install cronie;
 
 cd $WORKING_DIR
 
-echo "Creating cron jobs for start and stopping monitor";
-crontab unicefcron;
+# EXPERIMENTAL
+# echo "Creating cron jobs for start and stopping monitor";
+# crontab unicefcron;
 
 echo "Initializing SDCARD data dirs..."
 mkdir -p $data_packages_dir
